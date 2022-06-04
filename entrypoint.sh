@@ -9,14 +9,14 @@ bash -c "set -e; set -o pipefail; echo 'labs-validator version'; labs-validator 
 
 if [ $1 = "trivy" ]
 then
+  cache_dir="${RUNNER_TEMP}/.trivy"
   echo ">>> Trivy mode"
   echo "Trivy version"
   bash -c "set -e; set -o pipefail; trivy --version"
   echo ">>> Trivy scanning table output"
-  bash -c "set -e; set -o pipefail; TRIVY_CACHE_DIR=.trivy trivy config -f table -s HIGH,CRITICAL ."
+  bash -c "set -e; set -o pipefail; TRIVY_CACHE_DIR=$cache_dir trivy config -f table -s HIGH,CRITICAL ."
   echo ">>> Trivy scanning json file output"
-  bash -c "set -e; set -o pipefail; TRIVY_CACHE_DIR=.trivy trivy config -f json -s HIGH,CRITICAL -o trivy.json ."
-
+  bash -c "set -e; set -o pipefail; TRIVY_CACHE_DIR=$cache_dir trivy config -f json -s HIGH,CRITICAL -o trivy.json ."
   echo ">>> Validating results against labs.safestack.io"
   bash -c "set -e; set -o pipefail; labs-validator trivy -json=trivy.json"
 fi
