@@ -6,6 +6,4 @@ RUN apk update && apk add --update bash
 COPY entrypoint.sh /entrypoint.sh
 COPY --from=trivy-img /usr/local/bin/trivy /bin/trivy
 
-USER 1000
-
 ENTRYPOINT ["/entrypoint.sh"]
