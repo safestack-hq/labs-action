@@ -1,0 +1,14 @@
+name: 'labs-action'
+description: 'An action to validate security scanners as part of SafeStack.io lab exercises'
+author: 'christian@safestack.io'
+inputs:
+  command:
+    description: 'What mode to run - currently only trivy'
+    required: true
+    default: 'trivy'
+
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/safestack-hq/labs-action:release'
+  args:
+    - ${{ inputs.command }}
