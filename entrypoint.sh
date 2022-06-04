@@ -5,7 +5,6 @@ echo ">>> Starting"
 echo ""
 
 bash -c "set -e; set -o pipefail; echo 'labs-validator version'; labs-validator --version"
-# bash -c "set -e; set -o pipefail; trivy --version"
 
 if [ $1 = "trivy" ]
 then
