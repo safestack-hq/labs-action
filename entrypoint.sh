@@ -9,6 +9,7 @@ bash -c "set -e; set -o pipefail; echo 'labs-validator version'; labs-validator 
 if [ $1 = "trivy" ]
 then
   cache_dir="${RUNNER_TEMP}/.trivy"
+  echo "The cache dir is $cache_dir"
   echo ">>> Trivy mode"
   echo "Trivy version"
   bash -c "set -e; set -o pipefail; trivy --version"
