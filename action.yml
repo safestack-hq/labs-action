@@ -9,6 +9,6 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/safestack-hq/labs-action:v0.0.3'
+  image: 'docker://ghcr.io/safestack-hq/labs-action:v0.0.4'
   args:
     - ${{ inputs.command }}

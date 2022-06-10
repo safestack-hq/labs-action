@@ -15,6 +15,11 @@ then
   bash -c "set -e; set -o pipefail; trivy config -f table -s HIGH,CRITICAL ."
   echo ">>> Trivy scanning json file output"
   bash -c "set -e; set -o pipefail; trivy config -f json -s HIGH,CRITICAL -o trivy.json ."
-  echo ">>> Validating results against labs.safestack.io"
+  echo ">>> Validating results against labs"
   bash -c "set -e; set -o pipefail; labs-validator trivy -json=trivy.json"
+elif [ $1 = "webconfig-easy" ]
+then
+  echo ">>> web.config easy mode"
+  echo ">>> Validating results against labs"
+  bash -c "set -e; set -o pipefail; labs-validator webconfig-easy -xml=web.config"
 fi
